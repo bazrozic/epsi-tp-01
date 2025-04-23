@@ -1,8 +1,5 @@
 <header class="header">
   <h1>
-    <!-- TODO 1 : Faites en sorte que le lien fonctionne, et que cela ne reload pas completement la page
-       Indice : Il faut utiliser une directive sur le tag <a>
-    -->
     <a routerLink="/">
       <span>{{title}}</span> <!-- TODO 2 : Creer un pipe qui permet de mettre le premier mot en majuscule, le reste en minuscule et de remplacer les underscores par des espaces -->
     </a>
@@ -13,10 +10,10 @@
        Indice : Il faut utiliser une directive sur le tag <a>
       -->
       <li>
-        <a href="/">Accueil</a>
+        <a routerLink="/">Accueil</a>
       </li>
       <li>
-        <a href="/books">Ma Bibliothèque</a>
+        <a routerLink="/books">Ma Bibliothèque</a>
       </li>
     </ul>
   </nav>
