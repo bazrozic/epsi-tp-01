@@ -78,3 +78,28 @@ Cela permet d'accéder à la page de détail d'un livre via une URL du type `/bo
 - **Composant de détail** : Affichage des informations d'un élément sélectionné via un composant dédié.
 
 ---
+
+## Problème 6 : Formulaire incomplet
+
+**Nature du problème**  
+Le formulaire d'ajout de livre n'était pas implémenté, empêchant les utilisateurs d'ajouter de nouveaux livres à la bibliothèque.
+
+**Solution technique**  
+J'ai créé un formulaire réactif dans le composant `AddBookComponent` avec les champs nécessaires (`title`, `author`, `description`, `category`).  
+Aucune validation n'a été ajoutée à ce stade (voir problème 7 pour les validations).
+
+Exemple d'implémentation :
+```typescript
+this.bookForm = this.fb.group({
+  title: [''],
+  author: [''],
+  description: [''],
+  category: ['']
+});
+```
+
+**Concepts Angular utilisés**  
+- **Formulaires réactifs** : Utilisation de `FormBuilder` et `FormGroup` pour gérer l'état du formulaire dans le composant.
+- **Binding de formulaire** : Liaison du formulaire Angular avec le template via `[formGroup]` et `formControlName`.
+
+---
