@@ -103,3 +103,26 @@ this.bookForm = this.fb.group({
 - **Binding de formulaire** : Liaison du formulaire Angular avec le template via `[formGroup]` et `formControlName`.
 
 ---
+
+## Problème 7 : Validations manquantes
+
+**Nature du problème**  
+Le formulaire d'ajout de livre acceptait des données incomplètes ou incorrectes, car aucune validation n'était appliquée aux champs.
+
+**Solution technique**  
+J'ai ajouté des validateurs Angular (`Validators.required`, `Validators.minLength`) sur chaque champ du formulaire dans `AddBookComponent` :
+```typescript
+this.bookForm = this.fb.group({
+  title: ['', Validators.required],
+  author: ['', Validators.required],
+  description: ['', [Validators.required, Validators.minLength(10)]],
+  category: ['', Validators.required]
+});
+```
+Cela empêche la soumission du formulaire si un champ est vide ou si la description est trop courte.
+
+**Concepts Angular utilisés**  
+- **Validators Angular** : Utilisation de `Validators.required` et `Validators.minLength` pour contrôler la validité des champs.
+- **Validation de formulaire réactif** : Empêche la soumission tant que le formulaire n'est pas valide.
+
+---

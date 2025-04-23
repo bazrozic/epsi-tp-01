@@ -14,19 +14,17 @@ export class AddBookComponent implements OnInit {
   bookForm!: FormGroup;
   
   constructor(
-    private fb: FormBuilder,
+    private fb: FormBuilder, 
     private bookService: BookService,
     private router: Router
   ) {}
   
   ngOnInit(): void {    
-    // TODO 7 : Ajouter les validations nécessaires
-    // Création du formulaire avec les champs nécessaires (sans validations)
     this.bookForm = this.fb.group({
-      title: [''],
-      author: [''],
-      description: [''],
-      category: ['']
+      title: ['', Validators.required],
+      author: ['', Validators.required],
+      description: ['', [Validators.required, Validators.minLength(10)]],
+      category: ['', Validators.required]
     });
   }
   
