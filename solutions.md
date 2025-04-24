@@ -126,3 +126,44 @@ Cela empêche la soumission du formulaire si un champ est vide ou si la descript
 - **Validation de formulaire réactif** : Empêche la soumission tant que le formulaire n'est pas valide.
 
 ---
+
+## Problème 8 : Navigation manquante
+
+**Nature du problème**  
+Impossible de revenir à la page précédente depuis la page de détail d'un livre, ce qui bloque l'utilisateur sur cette vue.
+
+**Solution technique**  
+J'ai implémenté la méthode `goBack()` dans le composant `BookDetailComponent` pour permettre la navigation vers la page précédente.  
+La méthode utilise le routeur Angular pour revenir à la route parente :
+```typescript
+goBack(): void {
+  this.router.navigate(['../'], { relativeTo: this.route });
+}
+```
+On peut aussi utiliser `window.history.back()` pour un vrai retour historique si besoin.
+
+**Concepts Angular utilisés**  
+- **Router Angular** : Utilisation de la méthode `navigate` avec `relativeTo` pour naviguer dans l'arborescence des routes.
+- **Navigation utilisateur** : Amélioration de l'expérience utilisateur en permettant un retour simple.
+
+---
+
+## Problème 9 : Erreur dans la console
+
+**Nature du problème**  
+Une erreur "Cannot read properties of undefined" apparaissait dans la console lorsque les données du livre n'étaient pas encore chargées (accès à `book.title` alors que `book` est `undefined`).
+
+**Solution technique**  
+J'ai modifié le template du composant de détail (`book-detail.component.html`) pour n'afficher les propriétés du livre que lorsque l'objet `book` est défini, en enveloppant tout le contenu avec `*ngIf="book"` :
+```html
+<div class="book-detail-container" *ngIf="book">
+  <!-- ... -->
+</div>
+```
+Cela évite tout accès à une propriété d'un objet non initialisé.
+
+**Concepts Angular utilisés**  
+- **Gestion de l'asynchronisme** : Utilisation de `*ngIf` pour attendre que les données soient chargées avant d'accéder à leurs propriétés.
+- **Sécurité d'accès aux propriétés** : Prévention des erreurs d'accès à des objets non initialisés dans le template.
+
+---

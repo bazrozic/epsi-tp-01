@@ -46,6 +46,6 @@ export class BookDetailComponent implements OnInit {
   }
 
   goBack(): void {
-    // TODO 8 : Créer un bouton qui permet de revenir à la page précédente
+    this.router.navigate(['../'], { relativeTo: this.route });
   }
 }
