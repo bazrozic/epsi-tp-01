@@ -202,3 +202,59 @@ J'ai limité l'affichage de la description à 20 caractères dans le template de
 - **Affichage conditionnel** : Utilisation de `*ngIf` pour afficher les points de suspension uniquement si la description dépasse 20 caractères.
 
 ---
+
+## Problème 14 : Retour utilisateur manquant
+
+**Nature du problème**  
+Aucune confirmation n'était affichée après certaines actions (modification du favori, suppression d'un livre), ce qui laissait l'utilisateur sans retour sur le succès ou l'échec de son action.
+
+**Solution technique**  
+J'ai ajouté des alertes dans les callbacks de succès et d'erreur des méthodes `toggleFavorite` et `deleteBook` du composant `BookListComponent` :
+- Après modification du favori : `alert('Le statut favori a été modifié.');`
+- Après suppression d'un livre : `alert('Le livre a été supprimé.');`
+- En cas d'erreur : `alert('Erreur lors de la modification du favori.');` ou `alert('Erreur lors de la suppression du livre.');`
+
+**Concepts Angular utilisés**  
+- **Retour utilisateur** : Utilisation d'alertes pour informer l'utilisateur du résultat d'une action.
+- **Gestion des callbacks asynchrones** : Ajout de logique dans les callbacks de souscription RxJS pour réagir aux résultats.
+
+---
+
+## Problème 15 : Erreur d'affichage du titre
+
+**Nature du problème**  
+Le titre de la page d'accueil n'était pas affiché en majuscules comme attendu, ce qui nuisait à la cohérence visuelle.
+
+**Solution technique**  
+J'ai utilisé le pipe Angular `uppercase` dans le template du composant home (`home.component.html`) pour afficher le titre en majuscules :
+```html
+{{ title | uppercase }}
+```
+
+**Concepts Angular utilisés**  
+- **Pipe Angular `uppercase`** : Permet de transformer une chaîne de caractères en majuscules directement dans le template.
+
+---
+
+## Problème 16 : Directive incomplète
+
+**Nature du problème**  
+La directive `highlight` ne mettait pas suffisamment en évidence les éléments favoris : seul le fond ou le style n'était pas correctement appliqué.
+
+**Solution technique**  
+J'ai modifié la directive `HighlightDirective` pour qu'elle applique à la fois une couleur de fond et un texte en gras lorsque l'input est à `true`, et qu'elle retire ces styles sinon :
+```typescript
+if (this.appHighlight) {
+  this.renderer.setStyle(this.el.nativeElement, 'background-color', '#fff9c4');
+  this.renderer.setStyle(this.el.nativeElement, 'font-weight', 'bold');
+} else {
+  this.renderer.removeStyle(this.el.nativeElement, 'background-color');
+  this.renderer.setStyle(this.el.nativeElement, 'font-weight', 'normal');
+}
+```
+
+**Concepts Angular utilisés**  
+- **Directive personnalisée** : Modification dynamique du style d'un élément via Renderer2 et les hooks du cycle de vie.
+- **Réactivité Angular** : Utilisation de `ngOnChanges` pour réagir aux changements de l'input de la directive.
+
+---
