@@ -167,3 +167,22 @@ Cela évite tout accès à une propriété d'un objet non initialisé.
 - **Sécurité d'accès aux propriétés** : Prévention des erreurs d'accès à des objets non initialisés dans le template.
 
 ---
+
+## Problème 10 : Directive non appliquée
+
+**Nature du problème**  
+Certains éléments importants (comme le titre du livre) n'étaient pas mis en évidence visuellement, car la directive `highlight` n'était pas appliquée.
+
+**Solution technique**  
+J'ai appliqué la directive `appHighlight` sur le titre du livre dans le template du composant de détail (`book-detail.component.html`) :
+```html
+<h1 class="book-title" [appHighlight]="book.isFavorite">{{ book.title }}</h1>
+```
+Cela permet de mettre en évidence le titre si le livre est favori.
+
+**Concepts Angular utilisés**  
+- **Directive personnalisée** : Utilisation d'une directive Angular pour modifier dynamiquement l'apparence d'un élément.
+- **Binding d'attribut** : Passage d'une valeur dynamique à la directive via `[appHighlight]`.
+
+---
+````

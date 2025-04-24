@@ -1,6 +1,6 @@
 <div class="book-detail-container" *ngIf="book">
   <div class="book-card">
-    <h1 class="book-title">{{ book.title }}</h1> <!-- TODO 10: Appliquer la directive highlight à ce champ -->
+    <h1 class="book-title" [appHighlight]="book.isFavorite">{{ book.title }}</h1>
     
     <div class="book-info">
       <p class="author">{{ book.author }}</p>
@@ -29,9 +29,8 @@
     </div>
   </div>
 </div>
-    
 
-          
-        
-      
-    
+
+
+
+
