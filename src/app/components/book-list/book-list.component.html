@@ -6,16 +6,13 @@
 </button>
 
 <div class="books-container">
-  <!-- TODO 13 : Les données sont passées à la liste mais pas affichées. Affiche les données -->
-  <div *ngIf="data && data.length > 0; else noBooks">
+  <div *ngIf="books && books.length > 0; else noBooks">
     <div class="book-card" *ngFor="let book of books">
       <div class="book-info">
         <h2>{{ book.title }}</h2> <!-- TODO 14: Appliquer la directive highlight à ce champ -->
         <p>{{ book.author }}</p>
         <p>
-          <!-- TODO 15: Afficher la description du livre en utilisant un pour limiter à 20 caractères et ajouter des points de suspension si la description est plus longue.
-           Il faut utiliser un pipe existant ou en créer un nouveau pipe. Libre choix -->
-          {{ book.description }}
+          {{ book.description | slice:0:20 }}<span *ngIf="book.description.length > 20">...</span>
         </p>
         <p>Catégorie: {{ book.category }}</p>
         <p>Note: {{ book.rating }}</p>

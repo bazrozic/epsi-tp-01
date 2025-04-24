@@ -185,4 +185,20 @@ Cela permet de mettre en évidence le titre si le livre est favori.
 - **Binding d'attribut** : Passage d'une valeur dynamique à la directive via `[appHighlight]`.
 
 ---
-````
+
+## Problème 13 : Descriptions trop longues
+
+**Nature du problème**  
+Les descriptions des livres prenaient trop de place dans la liste, rendant l'interface encombrée et moins lisible.
+
+**Solution technique**  
+J'ai limité l'affichage de la description à 20 caractères dans le template de la liste des livres (`book-list.component.html`) en utilisant le pipe Angular `slice` et en ajoutant des points de suspension si la description est plus longue :
+```html
+{{ book.description | slice:0:20 }}<span *ngIf="book.description.length > 20">...</span>
+```
+
+**Concepts Angular utilisés**  
+- **Pipe Angular `slice`** : Permet de tronquer une chaîne de caractères à une longueur donnée dans le template.
+- **Affichage conditionnel** : Utilisation de `*ngIf` pour afficher les points de suspension uniquement si la description dépasse 20 caractères.
+
+---
