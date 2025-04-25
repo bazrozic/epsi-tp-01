@@ -9,7 +9,7 @@
   <div *ngIf="books && books.length > 0; else noBooks">
     <div class="book-card" *ngFor="let book of books">
       <div class="book-info">
-        <h2>{{ book.title }}</h2> <!-- TODO 14: Appliquer la directive highlight à ce champ -->
+        <h2 [appHighlight]="book.isFavorite">{{ book.title }}</h2>
         <p>{{ book.author }}</p>
         <p>
           {{ book.description | slice:0:20 }}<span *ngIf="book.description.length > 20">...</span>
